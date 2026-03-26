@@ -90,9 +90,9 @@ def evaluate_grades(data):
     gpa = (final_grade / 100) * 5.0
 
     print(f"\n--- Grade Summary ---")
-    print(f"  Summative Grade : {summative_grade:.3f} / 40")
-    print(f"  Formative Grade : {formative_grade:.3f} / 60")
-    print(f"  Final Grade     : {final_grade:.3f}%")
+    print(f"  Summative Grade : {summative_grade:.2f} / 40")
+    print(f"  Formative Grade : {formative_grade:.2f} / 60")
+    print(f"  Final Grade     : {final_grade:.2f}%")
     print(f"  GPA             : {gpa:.3f} / 5.0")
 
     
