@@ -90,10 +90,10 @@ def evaluate_grades(data):
     gpa = (final_grade / 100) * 5.0
 
     print(f"\n--- Grade Summary ---")
-    print(f"  Summative Grade : {summative_grade:.2f} / 40")
-    print(f"  Formative Grade : {formative_grade:.2f} / 60")
-    print(f"  Final Grade     : {final_grade:.2f}%")
-    print(f"  GPA             : {gpa:.2f} / 5.0")
+    print(f"  Summative Grade : {summative_grade:.3f} / 40")
+    print(f"  Formative Grade : {formative_grade:.3f} / 60")
+    print(f"  Final Grade     : {final_grade:.3f}%")
+    print(f"  GPA             : {gpa:.3f} / 5.0")
 
     
     #  Pass/Fail: student must score >= 50% in BOTH categories
@@ -127,9 +127,9 @@ def evaluate_grades(data):
     else:
         print("  Status: FAILED")
         if not summative_pass:
-            print(f"  Reason: Summative grade ({summative_grade:.2f}) is below the passing threshold of 20.00.")
+            print(f"  Reason: Summative grade ({summative_grade:.3f}) is below the passing threshold of 20.00.")
         if not formative_pass:
-            print(f"  Reason: Formative grade ({formative_grade:.2f}) is below the passing threshold of 30.00.")
+            print(f"  Reason: Formative grade ({formative_grade:.3f}) is below the passing threshold of 30.00.")
 
     if resubmission_candidates:
         print(f"\n--- Resubmission Eligible ---")
