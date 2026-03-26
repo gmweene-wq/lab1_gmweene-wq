@@ -40,9 +40,9 @@ def evaluate_grades(data):
     """
     print("\n--- Processing Grades ---")
 
-    # -------------------------------------------------------------------------
-    # a) Grade Validation: all scores must be between 0 and 100
-    # -------------------------------------------------------------------------
+    
+    #  Grade Validation: all scores must be between 0 and 100
+   
     invalid_scores = [a for a in data if not (0 <= a['score'] <= 100)]
     if invalid_scores:
         print("\n[ERROR] The following assignments have invalid scores (must be 0-100):")
@@ -51,9 +51,9 @@ def evaluate_grades(data):
         sys.exit(1)
     print("[OK] All scores are valid (0-100).")
 
-    # -------------------------------------------------------------------------
-    # b) Weight Validation: total=100, Summative=40, Formative=60
-    # -------------------------------------------------------------------------
+    
+    #  Weight Validation: total=100, Summative=40, Formative=60
+    
     total_weight     = sum(a['weight'] for a in data)
     summative_weight = sum(a['weight'] for a in data if a['group'] == 'Summative')
     formative_weight = sum(a['weight'] for a in data if a['group'] == 'Formative')
@@ -73,12 +73,12 @@ def evaluate_grades(data):
         sys.exit(1)
     print("[OK] All weights are valid (Total=100, Summative=40, Formative=60).")
 
-    # -------------------------------------------------------------------------
-    # c) GPA Calculation
+    
+    #  GPA Calculation
     #    Weighted grade per assignment = (score * weight) / 100
     #    Final Grade = sum of all weighted grades
     #    GPA = (Final Grade / 100) * 5.0
-    # -------------------------------------------------------------------------
+    
     summative_assignments = [a for a in data if a['group'] == 'Summative']
     formative_assignments = [a for a in data if a['group'] == 'Formative']
 
@@ -95,21 +95,21 @@ def evaluate_grades(data):
     print(f"  Final Grade     : {final_grade:.2f}%")
     print(f"  GPA             : {gpa:.2f} / 5.0")
 
-    # -------------------------------------------------------------------------
-    # d) Pass/Fail: student must score >= 50% in BOTH categories
+    
+    #  Pass/Fail: student must score >= 50% in BOTH categories
     #    Summative pass threshold : 50% of 40 = 20
     #    Formative pass threshold : 50% of 60 = 30
-    # -------------------------------------------------------------------------
-    summative_pass = summative_grade >= 20   # 50% of 40
-    formative_pass = formative_grade >= 30   # 50% of 60
+    
+    summative_pass = summative_grade >= 20   # which is 50% of 40
+    formative_pass = formative_grade >= 30   # which is 50% of 60
     overall_pass   = summative_pass and formative_pass
 
-    # -------------------------------------------------------------------------
-    # e) Resubmission Logic
+    
+    #  Resubmission Logic
     #    - Only applies to Formative assignments with score < 50
     #    - Find the highest weight among those failed ones
     #    - Flag ALL that share that highest weight
-    # -------------------------------------------------------------------------
+    
     failed_formative = [a for a in formative_assignments if a['score'] < 50]
     resubmission_candidates = []
 
@@ -117,9 +117,9 @@ def evaluate_grades(data):
         highest_weight = max(a['weight'] for a in failed_formative)
         resubmission_candidates = [a for a in failed_formative if a['weight'] == highest_weight]
 
-    # -------------------------------------------------------------------------
+    
     # f) Final Output
-    # -------------------------------------------------------------------------
+    
     print(f"\n--- Final Decision ---")
 
     if overall_pass:
