@@ -18,6 +18,14 @@ if [ ! -f "$GRADES_FILE" ]; then
 fi
 
 
+#  Check if grades.csv is empty — skip processing if it is
+
+if [ ! -s "$GRADES_FILE" ]; then
+    echo "Error: '$GRADES_FILE' is empty. Nothing to archive."
+    exit 1
+fi
+
+
 #  Check if archive directory exists, create if not
 
 if [ ! -d "$ARCHIVE_DIR" ]; then
