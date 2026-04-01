@@ -8,7 +8,11 @@ def load_csv_data():
     and extracts all fields into a list of dictionaries.
     """
     filename = input("Enter the name of the CSV file to process (e.g., grades.csv): ")
-    
+
+    if not filename.strip():
+        print("Error: File name cannot be empty.")
+        sys.exit(1)
+
     if not os.path.exists(filename):
         print(f"Error: The file '{filename}' was not found.")
         sys.exit(1)
