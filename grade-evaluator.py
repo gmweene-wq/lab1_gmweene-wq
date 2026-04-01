@@ -122,7 +122,7 @@ def evaluate_grades(data):
         resubmission_candidates = [a for a in failed_formative if a['weight'] == highest_weight]
 
     
-    # f) Final Output
+    #  Final Output
     
     print(f"\n--- Final Decision ---")
 
@@ -145,8 +145,8 @@ def evaluate_grades(data):
 
 
 if __name__ == "__main__":
-    # 1. Load the data
+    #  Load the data
     course_data = load_csv_data()
     
-    # 2. Process the features
+    #  Process the features
     evaluate_grades(course_data)
